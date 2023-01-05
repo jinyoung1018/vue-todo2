@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <TodoHeader></TodoHeader>
-    <TodoInput></TodoInput>
+    <TodoInput v-on:addTodoItem="addOneItem"></TodoInput>
     <TodoList v-bind:propsdata = "todoItems"></TodoList> 
     <TodoFooter></TodoFooter>
     
@@ -18,7 +18,14 @@ import TodoFooter from './components/TodoFooter.vue'
 export default {
   data: function() {
     return{
-      todoItems: []
+      todoItems: [],
+    }
+  },
+  methods:{
+    addOneItem: function(todoItem){
+      var obj = {completed:false, item: todoItem};
+      localStorage.setItem(todoItem, JSON.stringify(obj));//JSON.stringify(obj) 자바스크립트 객체를 스트링으로 변환
+      this.todoItems.push(obj)
     }
   },
 
