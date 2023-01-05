@@ -20,8 +20,7 @@ export default {
     methods: {
         removeTodo: function(todoItem,index){
             console.log(todoItem,index);
-            localStorage.removeItem(todoItem);
-            this.todoItems.splice(index, 1);//자바스크립트 배열 api, 특정 index에서 하나 지우기
+            this.$emit('removeItem', todoItem, index);
         },
         toggleComplete: function(todoItem){
             todoItem.completed = !todoItem.completed; 
