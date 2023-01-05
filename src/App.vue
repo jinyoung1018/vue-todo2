@@ -2,7 +2,7 @@
   <div id="app">
     <TodoHeader></TodoHeader>
     <TodoInput v-on:addTodoItem="addOneItem"></TodoInput>
-    <TodoList v-bind:propsdata = "todoItems" v-on:removeItem="removeOneItem"></TodoList> 
+    <TodoList v-bind:propsdata = "todoItems" v-on:removeItem="removeOneItem" v-on:toggleItem="toggleOneItem"></TodoList> 
     <TodoFooter></TodoFooter>
     
   </div>
@@ -30,6 +30,11 @@ export default {
     removeOneItem: function(todoItem,index){
       localStorage.removeItem(todoItem.item);
       this.todoItems.splice(index, 1);//자바스크립트 배열 api, 특정 index에서 하나 지우기
+    },
+    toggleOneItem: function(todoItem, index){
+      this.todoItems[index].completed = !this.todoItems[index].completed;
+      localStorage.removeItem(todoItem.item);
+      localStorage.setItem(todoItem.item,JSON.stringify(todoItem));
 
     }
   },
