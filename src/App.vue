@@ -2,7 +2,7 @@
   <div id="app">
     <TodoHeader></TodoHeader>
     <TodoInput></TodoInput>
-    <TodoList></TodoList>
+    <TodoList v-bind:propsdata = "todoItems"></TodoList> 
     <TodoFooter></TodoFooter>
     
   </div>
@@ -16,6 +16,22 @@ import TodoFooter from './components/TodoFooter.vue'
 
 
 export default {
+  data: function() {
+    return{
+      todoItems: []
+    }
+  },
+
+  created: function(){
+        if (localStorage.length > 0){
+            for(var i = 0; i < localStorage.length ; i ++){
+                if(localStorage.key(i) != 'loglevel:webpack-dev-server'){
+                    this.todoItems.push(JSON.parse(localStorage.getItem(localStorage.key(i))));//JSON.parse()스트링을 다시 오브젝트로
+                }
+
+            }
+        }
+    },
   //컴포넌트 등록
   components: {
     //컴포넌트 태그명: 컴포넌트 내용
