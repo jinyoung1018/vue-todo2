@@ -7,11 +7,12 @@
     </span>
 
     <Modal v-if="showModal" @close="showModal = false">
-        <!--
-      you can use custom content here to overwrite
-      default content
-    -->
-        <h3 slot="header">경고!</h3>
+        <h3 slot="header">
+            경고!
+            <i class="closeModalBtn fa-sharp fa-solid fa-xmark" @click="showModal = false"></i>
+            </h3>
+        <h5 slot="body">아무것도 입력하지 않으셨어요</h5>
+
       </Modal>
   </div>
 </template>
@@ -39,12 +40,11 @@ export default {
         clearInput: function(){
             this.newTodoItem= '';
         },
-
     },
     components:{
             Modal,
 
-    }    
+    },    
 }
 </script>
 
@@ -72,5 +72,10 @@ input:focus {
 .addBtn {
 	color: white;
 	vertical-align: middle;
+}
+
+.closeModalBtn{
+    color:#42b983
+
 }
 </style>
