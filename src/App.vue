@@ -23,7 +23,7 @@ export default {
   },
   methods:{
     addOneItem: function(todoItem){
-      var obj = {completed:false, item: todoItem};
+      const obj = {completed:false, item: todoItem};
       localStorage.setItem(todoItem, JSON.stringify(obj));//JSON.stringify(obj) 자바스크립트 객체를 스트링으로 변환
       this.todoItems.push(obj)
     },
@@ -46,7 +46,7 @@ export default {
 
   created: function(){
         if (localStorage.length > 0){
-            for(var i = 0; i < localStorage.length ; i ++){
+            for(let i = 0; i < localStorage.length ; i ++){
                 if(localStorage.key(i) != 'loglevel:webpack-dev-server'){
                     this.todoItems.push(JSON.parse(localStorage.getItem(localStorage.key(i))));//JSON.parse()스트링을 다시 오브젝트로
                 }
