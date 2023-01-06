@@ -4,16 +4,26 @@
     <!-- <button v-on:click="addTodo">add</button> -->
     <span class="addContainer" v-on:click="addTodo">
         <i class="fa-regular fa-plus addBtn"></i>
-
     </span>
+
+    <Modal v-if="showModal" @close="showModal = false">
+        <!--
+      you can use custom content here to overwrite
+      default content
+    -->
+        <h3 slot="header">custom header</h3>
+      </Modal>
   </div>
 </template>
 
 <script>
+import Modal from './common/modal.vue'
+
 export default {
     data: function(){
         return{
-            newTodoItem:""
+            newTodoItem:"",
+            showModal: false
         }
     },
     methods:{
@@ -22,16 +32,16 @@ export default {
             if(this.newTodoItem != ''){
             this.$emit('addTodoItem', this.newTodoItem);
             this.clearInput();
-            }
-            
+            }   
         },
         clearInput: function(){
             this.newTodoItem= '';
+        },
+        components:{
+            Modal: Modal
 
-        }
-    
+        }    
     }
-
 }
 </script>
 
