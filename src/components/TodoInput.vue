@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import Modal from './common/modal.vue'
+import Modal from './common/Modal.vue'
 
 export default {
     data: function(){
@@ -39,11 +39,12 @@ export default {
         clearInput: function(){
             this.newTodoItem= '';
         },
-        components:{
-            Modal: Modal
 
-        }    
-    }
+    },
+    components:{
+            Modal,
+
+    }    
 }
 </script>
 
