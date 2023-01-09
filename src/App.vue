@@ -21,12 +21,12 @@ export default {
       todoItems: [],
     }
   },
-  methods:{
-    addOneItem(todoItem){
-      const obj = {completed:false, item: todoItem};
-      localStorage.setItem(todoItem, JSON.stringify(obj));//JSON.stringify(obj) 자바스크립트 객체를 스트링으로 변환
-      this.todoItems.push(obj)
-    },
+  methods:{//mutations
+    // addOneItem(todoItem){
+    //   const obj = {completed:false, item: todoItem};
+    //   localStorage.setItem(todoItem, JSON.stringify(obj));//JSON.stringify(obj) 자바스크립트 객체를 스트링으로 변환
+    //   this.todoItems.push(obj)
+    // },
     removeOneItem(todoItem,index){
       localStorage.removeItem(todoItem.item);
       this.todoItems.splice(index, 1);//자바스크립트 배열 api, 특정 index에서 하나 지우기
@@ -42,16 +42,6 @@ export default {
     }
   },
 
-  created(){
-        if (localStorage.length > 0){
-            for(let i = 0; i < localStorage.length ; i ++){
-                if(localStorage.key(i) != 'loglevel:webpack-dev-server'){
-                    this.todoItems.push(JSON.parse(localStorage.getItem(localStorage.key(i))));//JSON.parse()스트링을 다시 오브젝트로
-                }
-
-            }
-        }
-    },
   //컴포넌트 등록
   components: {
     //컴포넌트 태그명: 컴포넌트 내용
