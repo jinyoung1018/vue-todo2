@@ -1,7 +1,7 @@
 <template>
   <div> 
     <transition-group name = "list" tag="ul">
-        <li v-for="(todoItem, index) in this.$store.state.todoItems" v-bind:key="todoItem.item" class='shdow'>
+        <li v-for="(todoItem, index) in this.storedTodoItems" v-bind:key="todoItem.item" class='shdow'>
             <i class="checkBtn fa-solid fa-check" v-bind:class="{checkBtnCompleted: todoItem.completed}" v-on:click="toggleComplete(todoItem, index)"></i>
             <span v-bind:class="{textCompleted: todoItem.completed}">{{todoItem.item}}</span>
             <span class="removeBtn" v-on:click="removeTodo(todoItem, index)">
@@ -13,6 +13,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
     methods: {
         removeTodo(todoItem,index){
@@ -22,14 +24,18 @@ export default {
         },
         toggleComplete(todoItem,index){
             // this.$emit('toggleItem',todoItem,index);
-            this.$store.commit('toggleOneItem',{todoItem, index});
-               
+            this.$store.commit('toggleOneItem',{todoItem, index});    
         }
-
-
     },
-    
-
+    computed: {
+        // todoItems(){
+        //     return this.$store.getters.storedTodoItems;
+        // }
+        ...mapGetters(['storedTodoItems'])//배열로
+        // ...mapGetters({
+        //     todoItems: 'storedTodoItems'
+        // })//객체로: getters에서 갖고있는 이름이랑 컴포넌트에서 이걸 사용하는 이름이 다를 떄
+    }
 }
 </script>
 
