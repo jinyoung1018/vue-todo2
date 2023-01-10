@@ -18,15 +18,14 @@ import { mapGetters, mapMutations } from 'vuex';
 export default {
     methods: {
         ...mapMutations({
-            removeTodo: 'removeOneItem'
+            removeTodo: 'removeOneItem',
+            toggleComplete: 'toggleOneItem'
         }),
         // removeTodo(todoItem,index){
         //     // this.$emit('removeItem', todoItem, index);// 이벤트 발생
         //     this.$store.commit('removeOneItem',{todoItem, index});
         // },
-        ...mapMutations({
-            toggleComplete: 'toggleOneItem'
-        })
+        
         // toggleComplete(todoItem,index){
         //     // this.$emit('toggleItem',todoItem,index);
         //     this.$store.commit('toggleOneItem',{todoItem, index});    
