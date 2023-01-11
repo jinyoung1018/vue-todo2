@@ -9,7 +9,8 @@ const removeOneItem = (state, payload) => {
     state.todoItems.splice(payload.index, 1);//자바스크립트 배열 api, 특정 index에서 하나 지우기
 }
 
-const toggleOneItem = (state,payload) => {
+const toggleOneItem = (state, payload) => {
+    console.log(876876876876);
     state.todoItems[payload.index].completed = !state.todoItems[payload.index].completed;
     localStorage.removeItem(payload.todoItem.item);
     localStorage.setItem(payload.todoItem.item,JSON.stringify(payload.todoItem));
@@ -20,4 +21,4 @@ const clearAllItems = (state) => {
     state.todoItems = [];//다시 빈 배열로 만들기 
 }
 
-export { addOneItem, removeOneItem, toggleOneItem, clearAllItems}
+export { addOneItem, removeOneItem, toggleOneItem, clearAllItems};

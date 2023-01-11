@@ -20,7 +20,7 @@ export default {
         ...mapMutations({
             removeTodo: 'removeOneItem',
             toggleComplete: 'toggleOneItem'
-        }),
+        })
         // removeTodo(todoItem,index){
         //     // this.$emit('removeItem', todoItem, index);// 이벤트 발생
         //     this.$store.commit('removeOneItem',{todoItem, index});

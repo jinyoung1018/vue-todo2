@@ -1,36 +1,40 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import * as getters from './getters'
-import * as mutations from './mutations'
+// import * as getters from './getters'
+// import * as mutations from './mutations'
+import todoApp from './modules/todoApp'
 
 Vue.use(Vuex);
 
-const storage = {
-    fetch(){
-        const arr = [];
-            if (localStorage.length > 0){
-                for(let i = 0; i < localStorage.length ; i ++){
-                    if(localStorage.key(i) != 'loglevel:webpack-dev-server'){
-                        arr.push(JSON.parse(localStorage.getItem(localStorage.key(i))));//JSON.parse()스트링을 다시 오브젝트로
-                    }
-                }
-            }  
-        return arr;
-    },
-}
+// const storage = {
+//     fetch(){
+//         const arr = [];
+//             if (localStorage.length > 0){
+//                 for(let i = 0; i < localStorage.length ; i ++){
+//                     if(localStorage.key(i) != 'loglevel:webpack-dev-server'){
+//                         arr.push(JSON.parse(localStorage.getItem(localStorage.key(i))));//JSON.parse()스트링을 다시 오브젝트로
+//                     }
+//                 }
+//             }  
+//         return arr;
+//     },
+// }
 
 export const store = new Vuex.Store({
-    state:{
-      todoItems: storage.fetch()
-    },
-     getters: getters,
-     //{
+    modules: {
+        todoApp,
+    }
+    // state:{
+    //   todoItems: storage.fetch()
+    // },
+    //  getters: getters,
+    //{
     //     storedTodoItems(state) {
     //         return state.todoItems;
     //     }
 
     // },
-    mutations: mutations //{
+    // mutations: mutations //{
     //     addOneItem(state, todoItem){
     //         const obj = {completed:false, item: todoItem};
     //         localStorage.setItem(todoItem, JSON.stringify(obj));//JSON.stringify(obj) 자바스크립트 객체를 스트링으로 변환
