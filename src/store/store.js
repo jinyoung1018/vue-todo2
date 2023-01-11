@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import * as getters from './getters'
+import * as mutations from './mutations'
 
 Vue.use(Vuex);
 
@@ -21,35 +23,36 @@ export const store = new Vuex.Store({
     state:{
       todoItems: storage.fetch()
     },
-    getters: {
-        storedTodoItems(state) {
-            return state.todoItems;
-        }
+     getters: getters,
+     //{
+    //     storedTodoItems(state) {
+    //         return state.todoItems;
+    //     }
 
-    },
-    mutations: {
-        addOneItem(state, todoItem){
-            const obj = {completed:false, item: todoItem};
-            localStorage.setItem(todoItem, JSON.stringify(obj));//JSON.stringify(obj) 자바스크립트 객체를 스트링으로 변환
-            state.todoItems.push(obj);
-        },
+    // },
+    mutations: mutations //{
+    //     addOneItem(state, todoItem){
+    //         const obj = {completed:false, item: todoItem};
+    //         localStorage.setItem(todoItem, JSON.stringify(obj));//JSON.stringify(obj) 자바스크립트 객체를 스트링으로 변환
+    //         state.todoItems.push(obj);
+    //     },
 
-        removeOneItem(state, payload){
-            localStorage.removeItem(payload.todoItem.item);
-            state.todoItems.splice(payload.index, 1);//자바스크립트 배열 api, 특정 index에서 하나 지우기
-        },
+    //     removeOneItem(state, payload){
+    //         localStorage.removeItem(payload.todoItem.item);
+    //         state.todoItems.splice(payload.index, 1);//자바스크립트 배열 api, 특정 index에서 하나 지우기
+    //     },
 
-        toggleOneItem(state,payload){
-            state.todoItems[payload.index].completed = !state.todoItems[payload.index].completed;
-            localStorage.removeItem(payload.todoItem.item);
-            localStorage.setItem(payload.todoItem.item,JSON.stringify(payload.todoItem));
-        },
+    //     toggleOneItem(state,payload){
+    //         state.todoItems[payload.index].completed = !state.todoItems[payload.index].completed;
+    //         localStorage.removeItem(payload.todoItem.item);
+    //         localStorage.setItem(payload.todoItem.item,JSON.stringify(payload.todoItem));
+    //     },
 
-        clearAllItems(state){
-            localStorage.clear();
-            state.todoItems = [];//다시 빈 배열로 만들기 
-        }
+    //     clearAllItems(state){
+    //         localStorage.clear();
+    //         state.todoItems = [];//다시 빈 배열로 만들기 
+    //     }
 
-    }
+    // }
 
 });
